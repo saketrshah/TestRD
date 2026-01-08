@@ -1,0 +1,138 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>About & Contact - ΩΣnergy</title>
+    <link rel="stylesheet" href="modern_styles.css">
+</head>
+<body>
+    <header>
+        <input type="checkbox" id="nav-toggle" class="nav-toggle">
+        <label for="nav-toggle" class="hamburger">
+            <span></span>
+            <span></span>
+            <span></span>
+        </label>
+        <img src="media/logo.png" alt="ΩΣnergy Logo" class="header-logo">
+        <h1>ΩΣnergy</h1>
+        <nav>
+            <ul>
+                <li><a href="homepage.html">Home</a></li>
+                <li><a href="about.html" class="active">About</a></li>
+                <li><a href="our_solution.html">Our Solution</a></li>
+                <li><a href="pricing.html">Pricing</a></li>
+            </ul>
+        </nav>
+    </header>
+    </header>
+
+    <main>
+        <!-- ABOUT SECTION -->
+        <section class="hero">
+            <div class="hero-content">
+                <h2>About ΩΣnergy</h2>
+                <p>Pioneering sustainable energy solutions for a better tomorrow.</p>
+            </div>
+            <img src="media/logo.png" alt="ΩΣnergy Logo" class="hero-logo">
+        </section>
+
+        <section id="mission">
+            <h2>Our Mission</h2>
+            <p>ΩΣnergy is on a mission to revolutionize renewable energy by providing a single, integrated system that combines perovskite solar panels, air-gen humidity power generation, and thermoelectric waste heat capture. Together, these three technologies create an unprecedented clean energy solution that maximizes power generation from multiple sources, delivering superior efficiency, affordability, and sustainability to businesses and individuals worldwide.</p>
+        </section>
+
+        <section id="values">
+            <h2>Our Values</h2>
+            <div class="card-grid">
+                <div class="card">
+                    <h3>Sustainability</h3>
+                    <p>Every watt matters. We harness overlooked energy sources—ambient humidity, waste heat, and advanced solar—to minimize environmental impact while maximizing output. Clean energy shouldn't cost the planet.</p>
+                </div>
+                <div class="card">
+                    <h3>Affordability</h3>
+                    <p>Breakthrough technology shouldn't break the bank. By integrating three power sources into one system, we deliver twice the efficiency at a fraction of the cost of traditional renewables.</p>
+                </div>
+                <div class="card">
+                    <h3>Flexibility</h3>
+                    <p>From sunny deserts to humid coastlines, our system adapts. Multiple energy sources mean reliable power generation in 90% of global climates—rain or shine, day or night.</p>
+                </div>
+            </div>
+        </section>
+
+        <section id="team">
+            <h2>Our Team</h2>
+            <p>ΩΣnergy was founded by five passionate engineers and innovators who shared a common vision: to create the world's most efficient, affordable, and integrated clean energy system. By combining three revolutionary technologies—perovskite solar panels, air-gen humidity power generation, and thermoelectric waste heat capture—our team developed a unified solution that eliminates the limitations of traditional renewable energy.</p>
+            <p>What started as a groundbreaking research project has evolved into a comprehensive energy platform that delivers constant power generation regardless of weather conditions, maximizes energy capture from multiple sources simultaneously, and provides unmatched ROI compared to conventional solar and wind solutions. Our integrated approach has validated over 80 kWh of daily energy generation in testing, proving that our system is thousands of dollars more affordable and twice as efficient as current market alternatives.</p>            <div class="team-grid">
+                <div class="team-member">
+                    <img src="media/team-shubhay-shah-min.jpeg" alt="Shubhay Shah" class="member-image">
+                    <div class="member-info">
+                        <h3>Shubhay Shah</h3>
+                        <p><strong>Team Lead</strong></p>
+                        <p>Strategic visionary with strong engineering and design expertise. Provides the team's strategic direction and mentors the integration of our three cutting-edge energy technologies into one unified system.</p>
+                    </div>
+                </div>
+                <div class="team-member">
+                    <img src="media/team-anders-lu-min.jpeg" alt="YiLin (Anders) Lu" class="member-image">
+                    <div class="member-info">
+                        <h3>YiLin (Anders) Lu</h3>
+                        <p><strong>Materials Engineer & Web Development Lead</strong></p>
+                        <p>Combines deep expertise in materials science with full-stack web development skills. Leads the technical research behind our perovskite solar technology while building and maintaining our digital presence and online tools.</p>
+                    </div>
+                </div>
+                <div class="team-member">
+                    <img src="media/team-bryce-liang.jpeg" alt="Bryce Liang" class="member-image">
+                    <div class="member-info">
+                        <h3>Bryce Liang</h3>
+                        <p><strong>Electrical Engineer</strong></p>
+                        <p>Expert in electrical engineering with a unique talent for energy and heat transfer logistics. Ensures seamless power management and thermal efficiency across all three energy generation methods.</p>
+                    </div>
+                </div>
+                <div class="team-member">
+                    <img src="media/team-haoran-zhou-min.jpeg" alt="Haoran (Harry) Zhou" class="member-image">
+                    <div class="member-info">
+                        <h3>Haoran (Harry) Zhou</h3>
+                        <p><strong>Air-Gen Engineer</strong></p>
+                        <p>Spearheads the development of our air-gen humidity power technology. Applies engineering skills to optimize moisture-harvesting systems</p>
+                    </div>
+                </div>
+                <div class="team-member">
+                    <img src="media/team-wesley-shen-min.JPEG" alt="Wesley Shen" class="member-image">
+                    <div class="member-info">
+                        <h3>Wesley Shen</h3>
+                        <p><strong>Design Engineer</strong></p>
+                        <p>Technical CAD expert and 3D modeling specialist. Translated our innovation from concept to reality, creating precise digital models and ensuring manufacturability of our integrated energy system.</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+    </main>
+
+    <footer>
+        <p>&copy; 2026 ΩΣnergy. All rights reserved.</p>
+    </footer>
+    <script>
+        let lastScrollY = window.scrollY;
+
+        window.addEventListener('scroll', function() {
+            const header = document.querySelector('header');
+            const scrollY = window.scrollY;
+            const scrollingDown = scrollY > lastScrollY;
+
+            if (scrollingDown && scrollY > 100) {
+                header.classList.add('header-hidden');
+            } else if (!scrollingDown) {
+                header.classList.remove('header-hidden');
+                if (scrollY > 50) {
+                    header.classList.add('header-compact');
+                } else {
+                    header.classList.remove('header-compact');
+                }
+            }
+
+            lastScrollY = scrollY;
+        });
+    </script>
+</body>
+</html>

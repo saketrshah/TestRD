@@ -1,0 +1,535 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Price Calculator - ΩΣnergy</title>
+    <link rel="stylesheet" href="modern_styles.css">
+    <style>
+        .calculator-container {
+            max-width: 800px;
+            margin: 3rem auto;
+            padding: 2rem;
+            background: linear-gradient(135deg, rgba(0, 200, 150, 0.1) 0%, rgba(100, 200, 255, 0.1) 100%);
+            border-radius: 15px;
+            box-shadow: 0 8px 32px rgba(0, 0, 0, 0.1);
+        }
+
+        .calculator-container h2 {
+            text-align: center;
+            margin-bottom: 1.5rem;
+            color: #00c896;
+        }
+
+        .input-group {
+            margin-bottom: 1.5rem;
+        }
+
+        .input-group label {
+            display: block;
+            margin-bottom: 0.5rem;
+            font-weight: 600;
+            color: #333;
+        }
+
+        .input-group input,
+        .input-group select {
+            width: 100%;
+            padding: 0.75rem;
+            border: 2px solid #e0e0e0;
+            border-radius: 8px;
+            font-size: 1rem;
+            transition: border-color 0.3s;
+        }
+
+        .input-group input:focus,
+        .input-group select:focus {
+            outline: none;
+            border-color: #00c896;
+            box-shadow: 0 0 8px rgba(0, 200, 150, 0.3);
+        }
+
+        .slider-container {
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+            margin-top: 0.5rem;
+        }
+
+        .slider-container input[type="range"] {
+            flex: 1;
+            height: 8px;
+            border-radius: 4px;
+            outline: none;
+            -webkit-appearance: none;
+            appearance: none;
+            background: #e0e0e0;
+            border: none;
+        }
+
+        .slider-container input[type="range"]::-webkit-slider-runnable-track {
+            background: #e0e0e0;
+            height: 8px;
+            border-radius: 4px;
+        }
+
+        .slider-container input[type="range"]::-webkit-slider-thumb {
+            -webkit-appearance: none;
+            appearance: none;
+            width: 24px;
+            height: 24px;
+            border-radius: 50%;
+            background: linear-gradient(135deg, #00c896 0%, #64c8ff 100%);
+            cursor: pointer;
+            box-shadow: 0 2px 8px rgba(0, 200, 150, 0.4);
+            border: 3px solid white;
+            position: relative;
+            top: -8px;
+        }
+
+        .slider-container input[type="range"]::-moz-range-track {
+            background: #e0e0e0;
+            height: 8px;
+            border-radius: 4px;
+            border: none;
+        }
+
+        .slider-container input[type="range"]::-moz-range-thumb {
+            width: 24px;
+            height: 24px;
+            border-radius: 50%;
+            background: linear-gradient(135deg, #00c896 0%, #64c8ff 100%);
+            cursor: pointer;
+            border: 3px solid white;
+            box-shadow: 0 2px 8px rgba(0, 200, 150, 0.4);
+        }
+
+        .slider-container input[type="range"]::-moz-range-progress {
+            background: linear-gradient(to right, #00c896, #64c8ff);
+            height: 8px;
+            border-radius: 4px;
+        }
+
+        .slider-value {
+            min-width: 60px;
+            text-align: right;
+            font-weight: 600;
+            color: #00c896;
+        }
+
+        .breakdown {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 1rem;
+            margin: 2rem 0;
+            padding: 1.5rem;
+            background: white;
+            border-radius: 10px;
+        }
+
+        .breakdown-item {
+            padding: 1rem;
+            border-left: 3px solid #00c896;
+            background: #f9f9f9;
+            border-radius: 5px;
+        }
+
+        .breakdown-item label {
+            display: block;
+            font-size: 0.9rem;
+            color: #666;
+            margin-bottom: 0.5rem;
+        }
+
+        .breakdown-item .value {
+            font-size: 1.5rem;
+            font-weight: bold;
+            color: #00c896;
+        }
+
+        .summary {
+            margin-top: 2rem;
+            padding: 2rem;
+            background: linear-gradient(135deg, #00c896 0%, #64c8ff 100%);
+            border-radius: 10px;
+            color: white;
+            text-align: center;
+        }
+
+        .summary h3 {
+            margin: 0 0 0.5rem 0;
+            font-size: 0.9rem;
+            text-transform: uppercase;
+            opacity: 0.9;
+        }
+
+        .summary .total-price {
+            font-size: 2.5rem;
+            font-weight: bold;
+            margin-bottom: 0.5rem;
+        }
+
+        .summary p {
+            margin: 0.5rem 0;
+            opacity: 0.95;
+        }
+
+        .button-group {
+            display: flex;
+            gap: 1rem;
+            margin-top: 2rem;
+            justify-content: center;
+        }
+
+        .btn {
+            padding: 0.75rem 2rem;
+            border: none;
+            border-radius: 8px;
+            font-size: 1rem;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s;
+            text-decoration: none;
+            display: inline-block;
+        }
+
+        .btn-accent {
+            background: #00c896;
+            color: white;
+        }
+
+        .btn-accent:hover {
+            background: #00a876;
+            transform: translateY(-2px);
+            box-shadow: 0 4px 12px rgba(0, 200, 150, 0.4);
+        }
+
+        .btn-secondary {
+            background: #f0f0f0;
+            color: #333;
+            border: 2px solid #00c896;
+        }
+
+        .btn-secondary:hover {
+            background: #00c896;
+            color: white;
+            transform: translateY(-2px);
+        }
+
+        .info-box {
+            background: #e3f2fd;
+            border-left: 4px solid #2196f3;
+            padding: 1rem;
+            border-radius: 5px;
+            margin-bottom: 1.5rem;
+            color: #1976d2;
+        }
+
+        .info-box strong {
+            color: #1565c0;
+        }
+
+        .energy-section {
+            margin-top: 3rem;
+            padding: 2rem;
+            background: white;
+            border-radius: 10px;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+        }
+
+        .energy-section h3 {
+            color: #1a1a1a;
+            margin-bottom: 1.5rem;
+            font-size: 1.3rem;
+        }
+
+        .energy-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 1.5rem;
+            margin-bottom: 2rem;
+        }
+
+        .energy-card {
+            text-align: center;
+            padding: 1.5rem;
+            background: linear-gradient(135deg, rgba(0, 200, 150, 0.05) 0%, rgba(100, 200, 255, 0.05) 100%);
+            border-radius: 8px;
+            border: 1px solid #e0e0e0;
+        }
+
+        .energy-card h4 {
+            font-size: 0.85rem;
+            color: #666;
+            margin-bottom: 0.5rem;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+        }
+
+        .energy-card .value {
+            font-size: 2rem;
+            font-weight: bold;
+            color: #00c896;
+            margin-bottom: 0.25rem;
+        }
+
+        .energy-card .unit {
+            font-size: 0.9rem;
+            color: #999;
+        }
+
+        .chart-container {
+            width: 100%;
+            height: 350px;
+            margin-bottom: 1.5rem;
+            background: white;
+            border-radius: 8px;
+            border: 1px solid #e0e0e0;
+            padding: 1rem;
+            box-sizing: border-box;
+        }
+
+        @media (max-width: 768px) {
+            .energy-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <input type="checkbox" id="nav-toggle" class="nav-toggle">
+        <label for="nav-toggle" class="hamburger">
+            <span></span>
+            <span></span>
+            <span></span>
+        </label>
+        <img src="media/logo.png" alt="ΩΣnergy Logo" class="header-logo">
+        <h1>ΩΣnergy</h1>
+        <nav>
+            <ul>
+                <li><a href="homepage.html">Home</a></li>
+                <li><a href="about.html">About</a></li>
+                <li><a href="our_solution.html">Our Solution</a></li>
+                <li><a href="pricing.html" class="active">Pricing</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <main>
+        <section class="hero">
+            <div class="hero-content">
+                <h2>ΩΣnergy Price Calculator</h2>
+                <p>Configure your integrated perovskite solar, air-gen humidity power, and thermoelectric waste heat system to get instant price/energy estimates.</p>
+            </div>
+            <img src="media/logo.png" alt="ΩΣnergy Logo" class="hero-logo">
+        </section>
+
+        <div class="calculator-container">
+            <div class="info-box">
+                <strong>💡 Tip:</strong> ΩΣnergy systems include perovskite solar, air-gen humidity power, and thermoelectric waste heat capture integrated into one unified platform. Play with the options to find the best choice for you.
+            </div>
+
+            <h2>Calculate Your System</h2>
+
+            <form id="priceCalculator">
+                <div class="input-group">
+                    <label for="solutionType">System Configuration</label>
+                    <select id="solutionType" required>
+                        <option value="base">ΩΣnergy</option>
+                        <option value="storage">ΩΣnergy with Energy Storage</option>
+                    </select>
+                </div>
+
+                <div class="input-group">
+                    <label for="rooftop">Rooftop Coverage (m²)</label>
+                    <div class="slider-container">
+                        <input type="range" id="rooftop" min="10" max="100" value="36" step="2">
+                        <span class="slider-value"><span id="rooftopValue">36</span> m²</span>
+                    </div>
+                </div>
+
+                <div class="input-group">
+                    <label for="warranty">Warranty & Support</label>
+                    <select id="warranty" required>
+                        <option value="none">No Warranty</option>
+                        <option value="standard">5-Year Warranty - $400/year</option>
+                        <option value="premium">10-Year Warranty - $350/year</option>
+                    </select>
+                </div>
+
+                <div class="breakdown">
+                    <div class="breakdown-item">
+                        <label>System & Installation Cost</label>
+                        <div class="value" id="systemInstallationCost">$8,250</div>
+                    </div>
+                    <div class="breakdown-item">
+                        <label>Warranty & Support (Annual)</label>
+                        <div class="value" id="warrantyCostDisplay">$0</div>
+                    </div>
+                    <div class="breakdown-item">
+                        <label>Estimated Annual Savings</label>
+                        <div class="value" id="annualSavings">$3,000</div>
+                    </div>
+                    <div class="breakdown-item">
+                        <label>ROI Period</label>
+                        <div class="value" id="roiPeriod">3.1 yrs</div>
+                    </div>
+                </div>
+
+            </form>
+
+            <div class="energy-section">
+                <h3>Your Energy Production</h3>
+                <div class="energy-grid">
+                    <div class="energy-card">
+                        <h4>Total Generation</h4>
+                        <div class="value" id="totalGeneration">67</div>
+                        <div class="unit">kWh/day</div>
+                    </div>
+                    <div class="energy-card">
+                        <h4>Perovskite Solar</h4>
+                        <div class="value" id="pvProduction">39</div>
+                        <div class="unit">kWh/day</div>
+                    </div>
+                    <div class="energy-card">
+                        <h4>Air-Gen Humidity</h4>
+                        <div class="value" id="airgenProduction">20</div>
+                        <div class="unit">kWh/day</div>
+                    </div>
+                    <div class="energy-card">
+                        <h4>Thermoelectric</h4>
+                        <div class="value" id="tegProduction">8</div>
+                        <div class="unit">kWh/day</div>
+                    </div>
+                </div>
+                <div class="button-group" style="margin-top: 2rem; justify-content: center;">
+                    <button type="button" class="btn btn-secondary" onclick="window.location.href='homepage.html'">← Back to Home</button>
+                    <button type="button" class="btn btn-accent" onclick="document.getElementById('priceCalculator').dispatchEvent(new Event('submit'))">Get a Quote</button>
+                </div>
+            </div>
+        </div>
+    </main>
+
+    <footer>
+        <p>&copy; 2026 ΩΣnergy. All rights reserved.</p>
+    </footer>
+
+    <script>
+        // Pricing constants
+        const PANEL_COST_PER_SQM = 250;     // $250 per m²
+        const INSTALLATION_COST_PER_SQM = 75; // $75 per m²
+        const WARRANTY_SLOPE = 1250 / 90;    // Linear warranty cost: $250 at 10m², $1500 at 100m²
+        const WARRANTY_INTERCEPT = 1000 / 9; // Intercept for warranty linear equation
+        const ANNUAL_SAVINGS_PER_SQM = 120;   // $120 per m² per year (based on generation)
+
+        // Energy generation linear model constants
+        const PEROVSKITE_SLOPE = 49.87 / 36.0;  // kWh per m²
+        const PEROVSKITE_INTERCEPT = 0.0;
+        const AIRGEN_SLOPE = 24.71 / 36.0;      // kWh per m²
+        const AIRGEN_INTERCEPT = 0.0;
+        const TEG_SLOPE = (9.74 - 3.0) / 36.0;  // kWh per m²
+        const TEG_INTERCEPT = 3.0;
+
+        // Energy storage add-on
+        const pricingData = {
+            base: {
+                storageAddonPrice: 0,
+                storageAddonInstallation: 0
+            },
+            storage: {
+                storageAddonPrice: 2500,
+                storageAddonInstallation: 500
+            }
+        };
+
+        // Update calculator on input change
+        function updateCalculator() {
+            const solutionType = document.getElementById('solutionType').value;
+            const rooftop = parseInt(document.getElementById('rooftop').value);
+            const warranty = document.getElementById('warranty').value;
+
+            // Update display values
+            document.getElementById('rooftopValue').textContent = rooftop;
+
+            // Calculate costs
+            const panelCost = rooftop * PANEL_COST_PER_SQM;
+            const installationCost = rooftop * INSTALLATION_COST_PER_SQM;
+            const storageAddon = pricingData[solutionType].storageAddonPrice;
+            const storageInstallation = pricingData[solutionType].storageAddonInstallation;
+            
+            let warrantyCost = 0;
+            if (warranty === 'standard') {
+                warrantyCost = 400;
+            } else if (warranty === 'premium') {
+                warrantyCost = 350;
+            }
+            
+            const equipmentCost = panelCost + storageAddon;
+            const totalInstallation = installationCost + storageInstallation;
+            const totalSystemCost = equipmentCost + totalInstallation;
+            
+            // Annual savings based on rooftop coverage and warranty cost
+            const annualSavings = (rooftop * ANNUAL_SAVINGS_PER_SQM) - warrantyCost;
+            const roi = annualSavings > 0 ? (totalSystemCost / annualSavings).toFixed(1) : '∞';
+
+            // Update display
+            document.getElementById('systemInstallationCost').textContent = '$' + totalSystemCost.toLocaleString();
+            document.getElementById('warrantyCostDisplay').textContent = warrantyCost > 0 ? '$' + warrantyCost.toLocaleString() : 'Included';
+            document.getElementById('annualSavings').textContent = '$' + Math.round(annualSavings).toLocaleString();
+            document.getElementById('roiPeriod').textContent = typeof roi === 'string' ? roi : roi + ' years';
+
+            // Calculate energy production using linear models
+            const pvDaily = PEROVSKITE_SLOPE * rooftop + PEROVSKITE_INTERCEPT;
+            const airgenDaily = AIRGEN_SLOPE * rooftop + AIRGEN_INTERCEPT;
+            const tegDaily = TEG_SLOPE * rooftop + TEG_INTERCEPT;
+            const totalDaily = pvDaily + airgenDaily + tegDaily;
+
+            // Update energy display cards
+            document.getElementById('totalGeneration').textContent = totalDaily.toFixed(2);
+            document.getElementById('pvProduction').textContent = pvDaily.toFixed(2);
+            document.getElementById('airgenProduction').textContent = airgenDaily.toFixed(2);
+            document.getElementById('tegProduction').textContent = tegDaily.toFixed(2);
+        }
+        
+        // Event listeners
+        document.getElementById('solutionType').addEventListener('change', updateCalculator);
+        document.getElementById('rooftop').addEventListener('input', updateCalculator);
+        document.getElementById('warranty').addEventListener('change', updateCalculator);
+
+        // Handle form submission
+        document.getElementById('priceCalculator').addEventListener('submit', function(e) {
+            e.preventDefault();
+            const totalPrice = document.getElementById('totalPrice').textContent;
+            const rooftop = document.getElementById('rooftop').value;
+            const solutionType = document.getElementById('solutionType').options[document.getElementById('solutionType').selectedIndex].text;
+            const warranty = document.getElementById('warranty').options[document.getElementById('warranty').selectedIndex].text;
+            alert(`Quote requested!\n\nSolution: ${solutionType}\nRooftop Coverage: ${rooftop} m²\nWarranty: ${warranty}\nTotal Investment: ${totalPrice}\n\nOur team will contact you shortly with more details.`);
+        });
+
+        // Scroll to hide header
+        let lastScrollY = window.scrollY;
+        window.addEventListener('scroll', function() {
+            const header = document.querySelector('header');
+            const scrollY = window.scrollY;
+            const scrollingDown = scrollY > lastScrollY;
+
+            if (scrollingDown && scrollY > 100) {
+                header.classList.add('header-hidden');
+            } else if (!scrollingDown) {
+                header.classList.remove('header-hidden');
+                if (scrollY > 50) {
+                    header.classList.add('header-compact');
+                } else {
+                    header.classList.remove('header-compact');
+                }
+            }
+
+            lastScrollY = scrollY;
+        });
+
+        // Initial calculation
+        updateCalculator();
+    </script>
+</body>
+</html>

@@ -1,0 +1,192 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Our Solution - ΩΣnergy</title>
+    <link rel="stylesheet" href="modern_styles.css">
+    <style>
+        #image-gallery {
+            padding: 3rem 2rem;
+            background: #f9f9f9;
+        }
+        #image-gallery h2 {
+            text-align: left;
+            margin-bottom: 2rem;
+            max-width: 900px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+        .model-container {
+            max-width: 900px;
+            margin: 0 auto;
+            height: 600px;
+            background: white;
+            border-radius: 10px;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+            overflow: hidden;
+        }
+        .model-container iframe {
+            width: 100%;
+            height: 100%;
+            border: none;
+            border-radius: 10px;
+        }
+        #thermoelectric-section {
+            padding: 3rem 2rem;
+            background: white;
+        }
+        #thermoelectric-section h3 {
+            text-align: left;
+            margin-bottom: 2rem;
+            color: #1a1a1a;
+            font-size: 1.5rem;
+        }
+        .thermoelectric-wrapper {
+            max-width: 1200px;
+            margin: 0 auto;
+            display: flex;
+            gap: 3rem;
+            align-items: flex-start;
+        }
+        .thermoelectric-text {
+            flex: 1;
+        }
+        .thermoelectric-image-container {
+            flex: 1;
+            text-align: center;
+        }
+        .thermoelectric-image {
+            width: 100%;
+            max-width: 500px;
+            max-height: 400px;
+            object-fit: contain;
+            border-radius: 10px;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+        }
+        @media (max-width: 768px) {
+            .thermoelectric-wrapper {
+                flex-direction: column;
+                gap: 2rem;
+            }
+        }
+    </style>
+    <!-- Load the model-viewer library -->
+    <script type="module" src="https://ajax.googleapis.com/ajax/libs/model-viewer/3.1.1/model-viewer.min.js"></script>
+</head>
+<body>
+    <header>
+        <input type="checkbox" id="nav-toggle" class="nav-toggle">
+        <label for="nav-toggle" class="hamburger">
+            <span></span>
+            <span></span>
+            <span></span>
+        </label>
+        <img src="media/logo.png" alt="ΩΣnergy Logo" class="header-logo">
+        <h1>ΩΣnergy</h1>
+        <nav>
+            <ul>
+                <li><a href="homepage.html">Home</a></li>
+                <li><a href="about.html">About</a></li>
+                <li><a href="our_solution.html" class="active">Our Solution</a></li>
+                <li><a href="pricing.html">Pricing</a></li>
+            </ul>
+        </nav>
+    </header>
+    </header>
+
+    <main>
+        <!-- ENERGY SOLUTIONS SECTION -->
+        <section class="hero">
+            <div class="hero-content">
+                <h2>Our Energy Solutions</h2>
+                <p>Comprehensive models designed to meet diverse energy needs with maximum efficiency and sustainability.</p>
+            </div>
+            <img src="media/logo.png" alt="ΩΣnergy Logo" class="hero-logo">
+        </section>
+
+        <section id="core-model">
+            <h2>Our Solution</h2>
+            <p>ΩΣnergy merges three cutting-edge technologies into one unified energy system for maximum efficiency and sustainability:</p>
+            <div class="card-grid">
+                <div class="card tech-card" data-tech="perovskite">
+                    <h3>⚡ Perovskite Solar Panels</h3>
+                    <p>Next-generation photovoltaic technology with 30% higher efficiency than traditional solar, flexible application options, and lower manufacturing costs.</p>
+                </div>
+                <div class="card tech-card" data-tech="airgen">
+                    <h3>💧 Air-Gen Humidity Power</h3>
+                    <p>Revolutionary moisture-harvesting technology that generates power from ambient humidity levels, providing 24/7 energy generation independent of weather conditions.</p>
+                </div>
+                <div class="card tech-card" data-tech="thermoelectric">
+                    <h3>🔥 Thermoelectric Waste Heat Capture</h3>
+                    <p>Advanced heat recapture systems that convert waste thermal energy into usable electricity, maximizing overall system efficiency and ROI.</p>
+                </div>
+            </div>
+        </section>
+
+        <section id="image-gallery">
+            <h2>3D Model</h2>
+            <div class="model-container">
+                <model-viewer 
+                    id="sc1-model" 
+                    camera-controls 
+                    disable-zoom 
+                    camera-orbit="-55deg 70deg 0.3m" 
+                    touch-action="pan-y" 
+                    src="models/conrad.gltf" 
+                    ar 
+                    alt="ΩΣnergy 3D Model"
+                    style="width: 100%; height: 100%;">
+                </model-viewer>
+            </div>
+        </section>
+
+        <section id="thermoelectric-section">
+            <h3>Thermoelectric Heat Recovery Unit - A Detailed Look</h3>
+            <div class="thermoelectric-wrapper">
+                <div class="thermoelectric-text">
+                    <p>At the heart of every ΩΣnergy system is our <strong>Thermoelectric Heat Recovery Unit</strong>—a compact thermoelectric generator designed to capture waste heat from your home's various appliances.</p>
+                    <p>This unit converts thermal energy that would otherwise be lost into usable electricity, feeding it back into your home's power supply. Typically installed in the garage or utility room, it operates silently and requires minimal maintenance.</p>
+                    <p><strong>Key features:</strong></p>
+                    <ul>
+                        <li>Compact design fits standard garage installations</li>
+                        <li>Captures heat from multiple household appliances</li>
+                        <li>Produces up to 10 kWh of electricity every day</li>
+                    </ul>
+                </div>
+                <div class="thermoelectric-image-container">
+                    <img src="media/thermoelectric-gallery.png" alt="Central Heat Recovery Unit" class="thermoelectric-image">
+                </div>
+            </div>
+        </section>
+
+        <section id="cta">
+    </main>
+
+    <footer>
+        <p>&copy; 2026 ΩΣnergy. All rights reserved.</p>
+    </footer>
+    <script>
+        let lastScrollY = window.scrollY;
+
+        window.addEventListener('scroll', function() {
+            const header = document.querySelector('header');
+            const scrollY = window.scrollY;
+            const scrollingDown = scrollY > lastScrollY;
+
+            if (scrollingDown && scrollY > 100) {
+                header.classList.add('header-hidden');
+            } else if (!scrollingDown) {
+                header.classList.remove('header-hidden');
+                if (scrollY > 50) {
+                    header.classList.add('header-compact');
+                } else {
+                    header.classList.remove('header-compact');
+                }
+            }
+
+            lastScrollY = scrollY;
+        });
+    </script>
+</body>
+</html>

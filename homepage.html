@@ -1,0 +1,263 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ΩΣnergy - Modern Energy Solutions</title>
+    <link rel="stylesheet" href="modern_styles.css">
+    <!-- Load the model-viewer library -->
+    <script type="module" src="https://ajax.googleapis.com/ajax/libs/model-viewer/4.0.0/model-viewer.min.js"></script>
+    <style>
+        .video-hero {
+            position: relative;
+            width: 100%;
+            height: 100vh;
+            overflow: hidden;
+            display: flex;
+            align-items: flex-end;
+            justify-content: flex-start;
+            margin-top: -80px;
+            padding-top: 80px;
+        }
+        .video-hero video {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            min-width: 100%;
+            min-height: 100%;
+            width: auto;
+            height: auto;
+            transform: translate(-50%, -50%);
+            object-fit: cover;
+            z-index: -1;
+        }
+        .video-hero-overlay {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.3);
+            z-index: 0;
+        }
+        .video-hero-content {
+            position: relative;
+            z-index: 1;
+            text-align: left;
+            color: rgba(255, 255, 255, 0.9);
+            padding: 4rem;
+            max-width: 700px;
+        }
+        .video-hero-content h2 {
+            font-size: 3.5rem;
+            margin-bottom: 1rem;
+            color: rgba(255, 255, 255, 0.95);
+            text-shadow: 2px 2px 10px rgba(0, 0, 0, 0.4);
+        }
+        .video-hero-content p {
+            font-size: 1.4rem;
+            max-width: 600px;
+            margin: 0;
+            color: rgba(255, 255, 255, 0.85);
+            text-shadow: 1px 1px 6px rgba(0, 0, 0, 0.4);
+        }
+        .image-gallery {
+            margin: 2rem 0;
+            padding: 0;
+        }
+        .image-gallery h2 {
+            text-align: left;
+            margin-bottom: 2rem;
+            font-size: 2.2rem;
+            color: var(--primary);
+            position: relative;
+            padding-bottom: 1rem;
+        }
+        .image-gallery h2::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 60px;
+            height: 4px;
+            background: var(--accent);
+            border-radius: 2px;
+        }
+        .gallery-grid {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 2rem;
+        }
+        .gallery-item {
+            text-align: center;
+        }
+        .gallery-item img {
+            width: 100%;
+            height: 350px;
+            object-fit: cover;
+            border-radius: 10px;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+        .gallery-item img:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 8px 20px rgba(0, 0, 0, 0.15);
+        }
+        .gallery-item p {
+            margin-top: 1rem;
+            color: #555;
+            font-size: 1rem;
+        }
+        .model-container {
+            max-width: 900px;
+            margin: 0 auto 2rem auto;
+            height: 600px;
+            background: white;
+            border-radius: 10px;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+            overflow: hidden;
+        }
+        @media (max-width: 768px) {
+            .gallery-grid {
+                grid-template-columns: 1fr;
+            }
+            .video-hero-content h2 {
+                font-size: 2rem;
+            }
+            .video-hero-content p {
+                font-size: 1rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <input type="checkbox" id="nav-toggle" class="nav-toggle">
+        <label for="nav-toggle" class="hamburger">
+            <span></span>
+            <span></span>
+            <span></span>
+        </label>
+        <img src="media/logo.png" alt="ΩΣnergy Logo" class="header-logo">
+        <h1>ΩΣnergy</h1>
+        <nav>
+            <ul>
+                <li><a href="homepage.html" class="active">Home</a></li>
+                <li><a href="about.html">About</a></li>
+                <li><a href="our_solution.html">Our Solution</a></li>
+                <li><a href="pricing.html">Pricing</a></li>
+            </ul>
+        </nav>
+    </header>
+    </header>
+    <main>
+        <section class="video-hero">
+            <video autoplay muted loop playsinline>
+                <source src="media/Conrad_V01.mp4" type="video/mp4">
+            </video>
+            <div class="video-hero-overlay"></div>
+            <div class="video-hero-content">
+                <h2>Go Beyond, Go Omega</h2>
+                <p>Innovative, sustainable energy solutions designed for modern businesses and conscious individuals.</p>
+            </div>
+        </section>
+
+        <section id="highlights">
+            <h2>Why Choose ΩΣnergy</h2>
+            <div class="card-grid">
+                <div class="card">
+                    <h3>Cutting-Edge Technology</h3>
+                    <p>We use niche and modern technologies that have otherwise been overlooked or underutilized in the industry.</p>
+                </div>
+                <div class="card">
+                    <h3>Ahead of the Competition</h3>
+                    <p>We are <b>thousands of dollars more</b> affordable, <b>twice</b> as efficient, and <b>more diverse</b> than current clean energy solutions like solar and wind.</p>
+                </div>
+                <div class="card">
+                    <h3>Validated Results</h3>
+                    <p>We have simulated and validated our solution, producing over <b>75 kWh</b> of energy per day and <b>eliminating reliance on power grids</b>.</p>
+                </div>
+            </div>
+        </section>
+
+        <section id="gallery" class="image-gallery">
+            <h2>See It In Action</h2>
+            <div class="model-container">
+                <model-viewer 
+                    id="sc1-model" 
+                    camera-controls 
+                    disable-zoom 
+                    camera-orbit="-55deg 70deg 0.3m" 
+                    touch-action="pan-y" 
+                    src="models/conrad.gltf" 
+                    ar 
+                    alt="ΩΣnergy 3D Model"
+                    style="width: 100%; height: 100%;">
+                </model-viewer>
+            </div>
+            <div class="gallery-grid">
+                <div class="gallery-item">
+                    <img src="media/showcase.png" alt="ΩΣnergy System Showcase">
+                    <p>Our integrated energy system combines perovskite solar, air-gen humidity power, and thermoelectric heat capture in one unified solution.</p>
+                </div>
+                <div class="gallery-item">
+                    <img src="media/roof-view.png" alt="Rooftop Installation">
+                    <p>Sleek rooftop installation seamlessly blends with your home while maximizing energy generation from multiple sources.</p>
+                </div>
+            </div>
+        </section>
+
+        <section id="achievements">
+            <h2>Our Achievements</h2>
+            <div class="card-grid">
+                <div class="card">
+                    <h3>34%</h3>
+                    <p>Solar energy capture efficiency with our perovskite panels</p>
+                </div>
+                <div class="card">
+                    <h3>80+ kWh</h3>
+                    <p>Daily energy generation per 36m² panel array</p>
+                </div>
+                <div class="card">
+                    <h3>90%</h3>
+                    <p>Of the world where our system can function reliably</p>
+                </div>
+            </div>
+        </section>
+
+        <section id="cta">
+            <h2>Ready to Transform Your Energy?</h2>
+            <p>Be among the first to revolutionize your energy with ΩΣnergy's breakthrough integrated system.</p>
+            <div style="text-align: center; margin-top: 2rem;">
+                <a href="pricing.html" class="btn btn-accent" style="margin-right: 1rem;">Get Started</a>
+                <a href="our_solution.html" class="btn">Explore Solutions</a>
+            </div>
+        </section>
+    </main>
+    <footer>
+        <p>&copy; 2026 ΩΣnergy. All rights reserved.</p>
+    </footer>
+    <script>
+        let lastScrollY = window.scrollY;
+
+        window.addEventListener('scroll', function() {
+            const header = document.querySelector('header');
+            const scrollY = window.scrollY;
+            const scrollingDown = scrollY > lastScrollY;
+
+            if (scrollingDown && scrollY > 100) {
+                header.classList.add('header-hidden');
+            } else if (!scrollingDown) {
+                header.classList.remove('header-hidden');
+                if (scrollY > 50) {
+                    header.classList.add('header-compact');
+                } else {
+                    header.classList.remove('header-compact');
+                }
+            }
+
+            lastScrollY = scrollY;
+        });
+    </script>
+</body>
+</html>
